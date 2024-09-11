@@ -1,4 +1,6 @@
-# Homework Template for CMSI 3801
+# CMSI 3801 Homework
+
+## Carson Cabrera (c44rson) and Julian Mazzier (DroopyMantis)
 
 Welcome!
 
