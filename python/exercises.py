@@ -29,7 +29,7 @@ def powers_generator(*, base, limit) -> int:
         exponent += 1
 
 # Write your say function here
-def say(word = None, /):
+def say(word = None, /) -> str:
     if word == None:
         return ""
 
