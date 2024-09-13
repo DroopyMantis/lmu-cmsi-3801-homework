@@ -4,6 +4,16 @@
 
 ### Homework 1 (Scripting): Lua, Python, JavaScript
 
+- firstThenLowerCase(a, p)
+
+- powersGenerator(base, limit)
+
+- say(word)
+
+- meaningfulLineCount(filename)
+
+- class Quaternion
+
 ### Homework 2 (Enterprise): Java, Kotlin, Swift
 
 ### Homework 3 (Theory): TypeScript, OCaml, Haskell
