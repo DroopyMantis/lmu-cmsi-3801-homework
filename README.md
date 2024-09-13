@@ -2,19 +2,15 @@
 
 ## Carson Cabrera (c44rson) and Julian Mazzier (DroopyMantis)
 
-Welcome!
+### Homework 1 (Scripting): Lua, Python, JavaScript
 
-- **Homework 1 (Scripting)**: Lua, Python, JavaScript
-- **Homework 2 (Enterprise)**: Java, Kotlin, Swift
-- **Homework 3 (Theory)**: TypeScript, OCaml, Haskell
-- **Homework 4 (Systems)**: C, C++, Rust
-- **Homework 5 (Concurrency)**: Go
+### Homework 2 (Enterprise): Java, Kotlin, Swift
 
-## The Test Suites
+### Homework 3 (Theory): TypeScript, OCaml, Haskell
 
-The test files are included in the repo already. They are available for YOU! They will help you not only learn the languages and concepts covered in this course, but to help you with professional practice. You should get accustomed to writing code to make tests pass. As you grow in your profession, you will get used to writing your tests early.
+### Homework 4 (Systems): C, C++, Rust
 
-The test suites are run like so (assuming you have a Unix-like shell, modify as necessary if you have Windows):
+### Homework 5 (Concurrency): Go
 
 ### Lua
 
