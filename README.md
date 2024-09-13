@@ -6,6 +6,8 @@
 
 - firstThenLowerCase(a, p)
 
+  - ff
+
 - powersGenerator(base, limit)
 
 - say(word)
