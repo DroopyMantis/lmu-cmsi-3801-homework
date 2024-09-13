@@ -83,15 +83,15 @@ Quaternion.__index = Quaternion
 
 -- Constructor
 function Quaternion.new(a, b, c, d)
-    local self = setmetatable({}, Quaternion)
-    self.a = a
-    self.b = b
-    self.c = c
-    self.d = d
-    return self
+    return setmetatable({a = a, b = b, c = c, d = d}, Quaternion)
 end
 
--- Addition (q1 + q2)
+-- Coefficients
+function Quaternion:coefficients()
+    return {self.a, self.b, self.c, self.d}
+end
+
+-- Addition
 function Quaternion.__add(q1, q2)
     return Quaternion.new(
         q1.a + q2.a,
@@ -101,23 +101,14 @@ function Quaternion.__add(q1, q2)
     )
 end
 
--- Multiplication (q1 * q2)
+-- Multiplication
 function Quaternion.__mul(q1, q2)
-    local a = q1.a * q2.a - q1.b * q2.b - q1.c * q2.c - q1.d * q2.d
-    local b = q1.a * q2.b + q1.b * q2.a + q1.c * q2.d - q1.d * q2.c
-    local c = q1.a * q2.c - q1.b * q2.d + q1.c * q2.a + q1.d * q2.b
-    local d = q1.a * q2.d + q1.b * q2.c - q1.c * q2.b + q1.d * q2.a
-    return Quaternion.new(a, b, c, d)
-end
-
--- Equality (q1 == q2)
-function Quaternion.__eq(q1, q2)
-    return q1.a == q2.a and q1.b == q2.b and q1.c == q2.c and q1.d == q2.d
-end
-
--- Coefficients
-function Quaternion:coefficients()
-    return {self.a, self.b, self.c, self.d}
+    return Quaternion.new(
+        q1.a * q2.a - q1.b * q2.b - q1.c * q2.c - q1.d * q2.d,
+        q1.a * q2.b + q1.b * q2.a + q1.c * q2.d - q1.d * q2.c,
+        q1.a * q2.c - q1.b * q2.d + q1.c * q2.a + q1.d * q2.b,
+        q1.a * q2.d + q1.b * q2.c - q1.c * q2.b + q1.d * q2.a
+    )
 end
 
 -- Conjugate
@@ -127,23 +118,47 @@ end
 
 -- String representation
 function Quaternion:__tostring()
-    local parts = {}
-    if self.a ~= 0 then
-        table.insert(parts, tostring(self.a))
-    end
+    local str = ""
+    if self.a ~= 0 then str = str .. tostring(self.a) end
+
     if self.b ~= 0 then
-        table.insert(parts, (self.b > 0 and "+" or "") .. tostring(self.b) .. "i")
+        if self.b > 0 and str ~= "" then str = str .. "+" end
+        if self.b == -1 then
+            str = str .. "-i"
+        elseif self.b == 1 then
+            str = str .. "i"
+        else
+            str = str .. tostring(self.b) .. "i"
+        end
     end
+
     if self.c ~= 0 then
-        table.insert(parts, (self.c > 0 and "+" or "") .. tostring(self.c) .. "j")
+        if self.c > 0 and str ~= "" then str = str .. "+" end
+        if self.c == -1 then
+            str = str .. "-j"
+        elseif self.c == 1 then
+            str = str .. "j"
+        else
+            str = str .. tostring(self.c) .. "j"
+        end
     end
+
     if self.d ~= 0 then
-        table.insert(parts, (self.d > 0 and "+" or "") .. tostring(self.d) .. "k")
+        if self.d > 0 and str ~= "" then str = str .. "+" end
+        if self.d == -1 then
+            str = str .. "-k"
+        elseif self.d == 1 then
+            str = str .. "k"
+        else
+            str = str .. tostring(self.d) .. "k"
+        end
     end
-    if #parts == 0 then
-        return "0"
-    end
-    return table.concat(parts)
+
+    if str == "" then str = "0" end
+    return str
 end
 
--- Quaternion not finished, still failing 4 testers 
+-- Equality
+function Quaternion.__eq(q1, q2)
+    return q1.a == q2.a and q1.b == q2.b and q1.c == q2.c and q1.d == q2.d
+end
