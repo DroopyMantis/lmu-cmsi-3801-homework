@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Predicate;
 import java.io.BufferedReader;
@@ -52,15 +54,24 @@ public class Exercises {
             return new Say(newPhrase); // Return a new instance
         }
 
-        // Read-only 'phrase' method that returns the accumulated string
+        // Read only method
         public String phrase() {
-            return phrase; // Return the accumulated phrase
+            return phrase;
         }
     }
 
     // Write your line count function here
+    public static long meaningfulLineCount(String filename) throws IOException {
+        System.out.println("Trying to read from: " + Paths.get(filename).toAbsolutePath().toString());
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            return reader.lines()
+                    .filter(line -> !line.trim().isEmpty())  // Filter out empty and whitespace lines
+                    .filter(line -> line.trim().charAt(0) != '#')  // Filter out lines starting with #
+                    .count();  // Count lines
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException("No such file: " + filename);
+        }
+    }
 }
 
-// Write your Quaternion record class here
-
-// Write your BinarySearchTree sealed interface and its implementations here
